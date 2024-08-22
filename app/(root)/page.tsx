@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { LogIn } from 'lucide-react'
+import { LogIn } from 'lucide-react';
 
 import Logo from '@/app/(root)/components/logo';
 
@@ -12,15 +12,19 @@ export default function Home() {
         <Logo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg border-2 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl md:text-3xl md:leading-normal text-center`}>
-            Welcome to ...<br />
-            <strong className='text-3xl md:text-5xl'>TODO-GraphQL.</strong><br />
-            <span className='text-lg md:text-2xl'>This is the example for Next.js + GraphQL</span>
+        <div className="flex flex-col justify-center items-center gap-6 md:gap-8 rounded-lg border-2 px-6 py-10 md:w-2/5 md:px-20">
+          <p className="text-center text-xl md:text-3xl md:leading-normal">
+            Welcome to ...
+            <br />
+            <strong className="text-3xl md:text-5xl">TODO-GraphQL.</strong>
+            <br />
+            <span className="text-lg md:text-2xl">
+              This is the example for Next.js + GraphQL
+            </span>
           </p>
           <Link
             href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+            className="flex items-center gap-5 rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
           >
             <span>Log in</span> <LogIn className="w-5 md:w-6" />
           </Link>
@@ -31,15 +35,15 @@ export default function Home() {
             src="/hero-desktop.png"
             width={1000}
             height={760}
-            className='hidden md:block'
-            alt='Screen of the dashboard project showing desktop version'
+            className="hidden md:block"
+            alt="Screen of the dashboard project showing desktop version"
           />
-           <Image
+          <Image
             src="/hero-mobile.png"
             width={560}
             height={620}
-            className='block md:hidden'
-            alt='Screen of the dashboard project showing mobile version'
+            className="block md:hidden"
+            alt="Screen of the dashboard project showing mobile version"
           />
         </div>
       </div>

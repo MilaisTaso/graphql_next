@@ -1,4 +1,3 @@
-
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import { type Metadata } from 'next';
@@ -38,9 +37,7 @@ export default function RootLayout({
           GeistSans.variable,
         )}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
