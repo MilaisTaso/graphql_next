@@ -3,20 +3,20 @@ import Link from 'next/link';
 
 import { LogIn } from 'lucide-react'
 
+import Logo from '@/app/(root)/components/logo';
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col p-6">
       <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
+        <Logo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="flex flex-col justify-center gap-6 rounded-lg border-2 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
+          <p className={`text-xl md:text-3xl md:leading-normal text-center`}>
+            Welcome to ...<br />
+            <strong className='text-3xl md:text-5xl'>TODO-GraphQL.</strong><br />
+            <span className='text-lg md:text-2xl'>This is the example for Next.js + GraphQL</span>
           </p>
           <Link
             href="/login"
