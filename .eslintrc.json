@@ -27,6 +27,11 @@
             "pattern": "{react,react-dom/**,react-router-dom,next/**}",
             "group": "builtin",
             "position": "before"
+          },
+          {
+            "pattern": "geist/*",
+            "group": "builtin",
+            "position": "after"
           }
         ],
         "pathGroupsExcludedImportTypes": ["builtin"],
@@ -38,6 +43,9 @@
     ]
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "tailwindcss": {
       "callees": ["cn", "cva"],
       "config": "tailwind.config.js"

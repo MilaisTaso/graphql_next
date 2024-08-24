@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { LogIn } from 'lucide-react';
 
-import Logo from '@/app/(root)/components/logo';
+import { Logo } from '@/app/components/logo';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <Logo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center items-center gap-6 md:gap-8 rounded-lg border-2 px-6 py-10 md:w-2/5 md:px-20">
+        <div className="flex flex-col items-center justify-center gap-6 rounded-lg border-2 px-6 py-10 md:w-2/5 md:gap-8 md:px-20">
           <p className="text-center text-xl md:text-3xl md:leading-normal">
             Welcome to ...
             <br />
