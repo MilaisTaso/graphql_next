@@ -1,8 +1,11 @@
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import { type Metadata } from 'next';
 
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+
 import '@/app/globals.css';
+import { ComponentsProps } from './types';
+
 import { Providers } from '@/app/components/providers';
 import { env } from '@/env/client';
 import { cn } from '@/lib/utils';
@@ -22,11 +25,7 @@ export const viewport = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<ComponentsProps>) {
   return (
     <html lang="ja" suppressContentEditableWarning>
       <body
