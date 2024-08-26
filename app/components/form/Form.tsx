@@ -1,8 +1,14 @@
 import * as React from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, UseFormReturn, SubmitHandler, UseFormProps, FieldValues } from 'react-hook-form';
-import { ZodType, ZodTypeDef } from 'zod';
+import {
+  useForm,
+  UseFormReturn,
+  SubmitHandler,
+  UseFormProps,
+  FieldValues,
+} from 'react-hook-form';
+import { z, ZodType } from 'zod';
 
 import { cn } from '@/lib/utils';
 
@@ -16,8 +22,8 @@ type FormProps<TFormValues extends FieldValues, Schema> = {
 };
 
 export const Form = <
-  TFormValues extends FieldValues = Record<string, unknown>,
-  Schema extends ZodType<unknown, ZodTypeDef, unknown> = ZodType<unknown, ZodTypeDef, unknown>
+  Schema extends ZodType<any, any, any>,
+  TFormValues extends FieldValues = z.infer<Schema>,
 >({
   onSubmit,
   children,
@@ -26,7 +32,10 @@ export const Form = <
   options,
   schema,
 }: FormProps<TFormValues, Schema>) => {
-  const methods = useForm<TFormValues>({...options, resolver: schema && zodResolver(schema) });
+  const methods = useForm<TFormValues>({
+    ...options,
+    resolver: schema && zodResolver(schema),
+  });
   return (
     <form
       className={cn('space-y-6', className)}

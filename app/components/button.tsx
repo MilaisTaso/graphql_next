@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 
 import { Spinner } from '@/app/components/spinner';
 import { cn } from '@/lib/utils';
@@ -54,7 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             Loading...
           </span>
         ) : (
-          <span className="mx-2 flex items-center">{props.children}</span>
+          props.children
         )}
       </button>
     );

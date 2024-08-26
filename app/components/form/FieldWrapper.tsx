@@ -3,7 +3,7 @@ import { FieldError } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 
 type FieldWrapperProps = {
-  id: string
+  id: string;
   label?: string;
   className?: string;
   children: React.ReactNode;
@@ -19,8 +19,9 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
   const { id, label, className, error, children } = props;
   return (
     <div>
-      <label htmlFor={id}
-        className={cn('block text-sm font-medium text-gray-700', className)}
+      <label
+        htmlFor={id}
+        className={cn('block text-sm font-medium', className)}
       >
         {label}
         <div className="mt-1">{children}</div>

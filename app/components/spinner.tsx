@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const sizes = {
   sm: 'h-6 w-6',
@@ -54,4 +54,4 @@ export function Spinner({
       <span className="sr-only">Loading</span>
     </>
   );
-};
+}
