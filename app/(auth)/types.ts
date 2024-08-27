@@ -5,8 +5,12 @@ const passwordReg = new RegExp(
 );
 
 export const userSchema = z.object({
-  email: z.string().email().nullable(),
+  email: z.string().email(),
   password: z.string().min(8).regex(passwordReg),
 });
 
 export type User = z.infer<typeof userSchema>;
+
+export type UserCredential = {
+  
+}

@@ -1,5 +1,4 @@
-import ky from 'ky';
-import { HTTPError } from 'ky';
+import ky, { HTTPError } from 'ky';
 
 import { env } from '@/env/server';
 import { ENDPOINTS, type ApiEndpoint } from '@/lib/HTTP/endpoint';
@@ -22,7 +21,7 @@ class HttpClient {
     hooks: {},
   });
 
-  protected async post<T>(endpoint: ApiEndpoint, body: any) {
+  public async post<T>(endpoint: ApiEndpoint, body: any) {
     try {
       const response = await this.api.post(
        this.url(endpoint),
@@ -32,6 +31,9 @@ class HttpClient {
       )
 
       if (response.status != 200) throw new Error(`HTTP Request Error status: ${response.status}`)
+      
+      return response.json<T>();
+  
     } catch (err) {
       if (err instanceof HTTPError) {
         throw err;
@@ -41,3 +43,5 @@ class HttpClient {
     }
   }
 }
+
+export const client = new HttpClient()
