@@ -2,14 +2,17 @@
 
 import { LogIn } from 'lucide-react';
 
+import { authenticate } from '@/app/(auth)/actions/authorize';
 import { userSchema, User } from '@/app/(auth)/types';
 import { Button } from '@/app/components/button';
 import { Form } from '@/app/components/form/Form';
 import { InputField } from '@/app/components/form/InputField';
 import { cn } from '@/lib/utils';
 
-const loginSubmit = (data: User) => {
+const loginSubmit =  async (data: User) => {
   console.log(data);
+  'use sever'
+  // await authenticate(data);
 };
 
 export default function Login() {
