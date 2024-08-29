@@ -1,12 +1,12 @@
-import { NextRequest } from "next/server";
+import { NextRequest } from 'next/server';
 
-import { JWT } from "next-auth/jwt";
+import { JWT } from 'next-auth/jwt';
 
-import type { NextAuthConfig, Session, User } from "next-auth";
+import type { NextAuthConfig, Session, User } from 'next-auth';
 
 export const authConfig = {
   pages: {
-    signIn: "login",
+    signIn: 'login',
   },
   callbacks: {
     // Middlewareでユーザーの認証を行うときに呼び出される
@@ -18,10 +18,10 @@ export const authConfig = {
       auth: Session | null;
       request: NextRequest;
     }) {
-      console.log("authorized", auth, nextUrl.pathname);
+      console.log('authorized', auth, nextUrl.pathname);
 
       // /user以下のルートの保護
-      const isOnAuthenticatedPage = nextUrl.pathname.startsWith("/todo");
+      const isOnAuthenticatedPage = nextUrl.pathname.startsWith('/todo');
 
       if (isOnAuthenticatedPage) {
         const isLoggedIn = !!auth?.user;
@@ -37,7 +37,7 @@ export const authConfig = {
     // そこで、クライアントに返すべきものを制御できる。それ以外のものは、フロントエンドからは秘匿される。JWTはAUTH_SECRET環境変数によってデフォルトで暗号化される。
     // セッションに何を追加するかを決定するために使用される
     async jwt({ token, user }: { token: JWT; user: User }) {
-      console.log("jwt", token, user);
+      console.log('jwt', token, user);
       if (user) {
         token.token = user.token;
         token.user = user;
@@ -50,7 +50,7 @@ export const authConfig = {
     // token引数はjwtセッションストラテジーを使用する場合にのみ利用可能で、user引数はデータベースセッションストラテジーを使用する場合にのみ利用可能
     // JWTに保存されたデータのうち，クライアントに公開したいものを返す
     async session({ session, token }: { session: Session; token: JWT }) {
-      console.log("session", session, token);
+      console.log('session', session, token);
       session.token = token.token;
       session.user = token.user;
       return session;

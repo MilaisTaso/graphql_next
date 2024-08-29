@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { LogIn } from 'lucide-react';
 
@@ -9,10 +9,8 @@ import { Form } from '@/app/components/form/Form';
 import { InputField } from '@/app/components/form/InputField';
 import { cn } from '@/lib/utils';
 
-const loginSubmit =  async (data: User) => {
-  console.log(data);
-  'use sever'
-  // await authenticate(data);
+const loginSubmit = async (data: User) => {
+  await authenticate(data);
 };
 
 export default function Login() {

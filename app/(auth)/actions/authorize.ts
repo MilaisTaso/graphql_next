@@ -1,12 +1,17 @@
-import { AuthError } from "next-auth";
+'use server';
 
-import { User } from "@/app/(auth)/types";
-import { signIn } from "@/auth";
+import { AuthError } from 'next-auth';
+
+import { User } from '@/app/(auth)/types';
+import { signIn } from '@/auth';
 
 export async function authenticate(formData: User) {
-  console.log('認証データ', formData)
+  console.log('認証データ', formData);
   try {
-    await signIn('credentials', {email: formData.email, password: formData.password});
+    await signIn('credentials', {
+      email: formData.email,
+      password: formData.password,
+    });
   } catch (err) {
     if (err instanceof AuthError) {
       switch (err.type) {

@@ -1,3 +1,3 @@
 export default function Todo() {
-  return <div>Todo Page</div>
+  return <div>Todo Page</div>;
 }
