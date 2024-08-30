@@ -1,6 +1,7 @@
 import { Session } from 'inspector';
 
 import { Session, User as DefaultUser, DefaultSession } from 'next-auth';
+
 import { DefaultJWT, JWT } from 'next-auth/jwt';
 
 declare module 'next-auth' {
@@ -8,7 +9,7 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     token?: string;
     user?: {
-      backendToken?: string;
+      token?: string;
     } & DefaultSession['user'];
   }
 

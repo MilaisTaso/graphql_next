@@ -27,14 +27,17 @@ class HttpClient {
       if (response.status != 200)
         throw new Error(`HTTP Request Error status: ${response.status}`);
 
-      return response.json<T>();
+      const data = await response.json<T>();
+      console.log('client.ts レスポンス:', data);
+
+      return data
     } catch (err) {
       console.log('http client error', err)
       if (err instanceof HTTPError) {
         throw err;
       } else {
         console.log('unexpected error', err)
-        throw new Error(`Unexpected Error detail: ${err}`);
+        throw new Error(`Un expected Error. detail: ${err}`);
       }
     }
   }

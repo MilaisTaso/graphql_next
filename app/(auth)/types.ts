@@ -14,7 +14,9 @@ export type User = z.infer<typeof userSchema>;
 export type UserCredential = {
   user: {
     email: string;
-    nick_name: string;
+    nickName: string;
   };
-  token: string;
+  token: {
+    sub: string
+  };
 };

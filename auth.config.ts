@@ -18,18 +18,20 @@ export const authConfig = {
       auth: Session | null;
       request: NextRequest;
     }) {
-      console.log('authorized', auth, nextUrl.pathname);
+      console.log('auth.config.ts: url', nextUrl);
+      console.log('auth.config.ts: login user:', auth?.user)
 
       // /user以下のルートの保護
       const isOnAuthenticatedPage = nextUrl.pathname.startsWith('/todo');
+      const isLoggedIn = !!auth?.user;
+
 
       if (isOnAuthenticatedPage) {
-        const isLoggedIn = !!auth?.user;
-        if (!isLoggedIn) {
-          // falseを返すとpage:に設置した場所へリダイレクトされる
-          return false;
-        }
-        return true;
+        // falseを返すとpage:に設置した場所へリダイレクトされる
+        if (isLoggedIn) return true;
+        return false;
+      } else if (isLoggedIn) {
+        return Response.redirect(new URL('/todo', nextUrl))
       }
       return true;
     },
@@ -37,7 +39,7 @@ export const authConfig = {
     // そこで、クライアントに返すべきものを制御できる。それ以外のものは、フロントエンドからは秘匿される。JWTはAUTH_SECRET環境変数によってデフォルトで暗号化される。
     // セッションに何を追加するかを決定するために使用される
     async jwt({ token, user }: { token: JWT; user: User }) {
-      console.log('jwt', token, user);
+      console.log('auth.config.ts jwt:', token, user);
       if (user) {
         token.token = user.token;
         token.user = user;
@@ -49,10 +51,12 @@ export const authConfig = {
     // jwt callbackを通してトークンに追加したものをクライアントが利用できるようにしたい場合，ここでも明示的に返す必要がある
     // token引数はjwtセッションストラテジーを使用する場合にのみ利用可能で、user引数はデータベースセッションストラテジーを使用する場合にのみ利用可能
     // JWTに保存されたデータのうち，クライアントに公開したいものを返す
-    async session({ session, token }: { session: Session; token: JWT }) {
-      console.log('session', session, token);
+    async session({ session, token, user }: { session: Session; token: JWT, user: User }) {
+      console.log('auth.config.ts session:', session, token, user);
       session.token = token.token;
-      session.user = token.user;
+      if (token.user) {
+        session.user = token.user;
+      }
       return session;
     },
   },
