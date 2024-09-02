@@ -1,7 +1,7 @@
 import ky, { HTTPError } from 'ky';
 
 import { env } from '@/env/server';
-import { ENDPOINTS, type ApiEndpoint } from '@/lib/HTTP/endpoint';
+import { ENDPOINTS, type ApiEndpoint } from '@/lib/client/Rest/endpoint';
 
 class HttpClient {
   constructor(private baseUrl: string = env.API_URL) {}
@@ -30,13 +30,13 @@ class HttpClient {
       const data = await response.json<T>();
       console.log('client.ts レスポンス:', data);
 
-      return data
+      return data;
     } catch (err) {
-      console.log('http client error', err)
+      console.log('http client error', err);
       if (err instanceof HTTPError) {
         throw err;
       } else {
-        console.log('unexpected error', err)
+        console.log('unexpected error', err);
         throw new Error(`Un expected Error. detail: ${err}`);
       }
     }

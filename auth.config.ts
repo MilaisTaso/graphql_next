@@ -19,19 +19,18 @@ export const authConfig = {
       request: NextRequest;
     }) {
       console.log('auth.config.ts: url', nextUrl);
-      console.log('auth.config.ts: login user:', auth?.user)
+      console.log('auth.config.ts: login user:', auth?.user);
 
       // /user以下のルートの保護
       const isOnAuthenticatedPage = nextUrl.pathname.startsWith('/todo');
       const isLoggedIn = !!auth?.user;
-
 
       if (isOnAuthenticatedPage) {
         // falseを返すとpage:に設置した場所へリダイレクトされる
         if (isLoggedIn) return true;
         return false;
       } else if (isLoggedIn) {
-        return Response.redirect(new URL('/todo', nextUrl))
+        return Response.redirect(new URL('/todo', nextUrl));
       }
       return true;
     },
@@ -51,7 +50,15 @@ export const authConfig = {
     // jwt callbackを通してトークンに追加したものをクライアントが利用できるようにしたい場合，ここでも明示的に返す必要がある
     // token引数はjwtセッションストラテジーを使用する場合にのみ利用可能で、user引数はデータベースセッションストラテジーを使用する場合にのみ利用可能
     // JWTに保存されたデータのうち，クライアントに公開したいものを返す
-    async session({ session, token, user }: { session: Session; token: JWT, user: User }) {
+    async session({
+      session,
+      token,
+      user,
+    }: {
+      session: Session;
+      token: JWT;
+      user: User;
+    }) {
       console.log('auth.config.ts session:', session, token, user);
       session.token = token.token;
       if (token.user) {

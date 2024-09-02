@@ -17,6 +17,6 @@ export type UserCredential = {
     nickName: string;
   };
   token: {
-    sub: string
+    sub: string;
   };
 };

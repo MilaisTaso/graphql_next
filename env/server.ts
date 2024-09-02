@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const env = createEnv({
   server: {
     API_URL: z.string().url(),
+    GRAPHQL_URL: z.string().url(),
   },
   experimental__runtimeEnv: process.env,
 });
