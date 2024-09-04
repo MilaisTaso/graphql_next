@@ -1,7 +1,11 @@
 import { getTodos } from "@/app/todo/actions/todo";
+import { TodoItem } from "../types";
 
-export async function TodoList() {
-  const todos = await getTodos();
+export type TodoListProps = {
+  todos: TodoItem[]
+}
+
+export async function TodoList({todos}: TodoListProps) {
 
   return (
     <div className="mt-6 flow-root">

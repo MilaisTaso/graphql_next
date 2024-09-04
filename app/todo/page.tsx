@@ -1,9 +1,10 @@
+import { GetServerSideProps } from 'next';
 import { TodoForm } from '@/app/todo/components/todo-form';
 import { cn } from '@/lib/utils';
+import { TodoList, TodoListProps } from './components/todo-list';
+import { urqlClient } from '@/lib/client/GraphQL/client';
+import { getTodos } from './actions/todo';
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function Todo() {
   return (
@@ -17,7 +18,7 @@ export default function Todo() {
       >
         <h1>Todo Page</h1>
         <div>
-          
+          <TodoList />
         </div>
         <div className="w-full">
           <TodoForm />
@@ -25,4 +26,15 @@ export default function Todo() {
       </div>
     </div>
   );
+}
+
+export const getServerSideProps: GetServerSideProps<TodoListProps> = async () => {
+  const todoList = await getTodos();
+
+  return {
+    props: {
+      todos: todoList
+    }
+  }
+
 }

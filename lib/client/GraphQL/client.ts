@@ -7,7 +7,7 @@ import {
   cacheExchange,
 } from 'urql';
 
-import { auth, auth } from '@/auth';
+import { auth, } from '@/auth';
 
 import { env } from '@/env/server';
 
